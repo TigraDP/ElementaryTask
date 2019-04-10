@@ -1,6 +1,6 @@
 import {checkNumber} from "./validator.js";
-//import {mirrorNumber} from "./Functions.js";
-import {mirrorString} from "./Functions.js";
+//import {mirrorNumber} from "./functions.js";
+import {mirrorString} from "./functions.js";
 
 export function isPalindrome (palindromeData){
     const error = '{status: ‘failed’, reason: ‘ Введите корректное значение. Пример: 123456789}';
