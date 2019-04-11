@@ -1,16 +1,15 @@
-import {checkNumber} from "./validator.js";
-//import {mirrorNumber} from "./functions.js";
-import {mirrorString} from "./functions.js";
+import {checkNumber} from "./checkNumber.js";
+import {sortMaxMin} from "./sortMaxMin.js";
+import {reverseString} from "./reverseString.js";
 
 export function isPalindrome (palindromeData){
-    const error = '{status: ‘failed’, reason: ‘ Введите корректное значение. Пример: 123456789}';
+    const error = '{status: ‘failed’, reason: ‘ Введите корректное значение - целое число больше 10. Пример: 123456789}';
     let number = checkNumber(palindromeData);
     let leftNumber;
     let rightNumber;
     let numString;
-    //let result = '';
-    //let count = 0;
-    
+    let result = [];
+
     if (number !== false){
         number = String(number);
 
@@ -18,24 +17,20 @@ export function isPalindrome (palindromeData){
             numString = number.substring(i);
 
             for (let j = 0; j < numString.length - 1; j++){
-                // leftNumber = Number(numString.substring(0, numString.length - j));
-                // rightNumber = mirrorNumber(leftNumber);
+
                 leftNumber = numString.substring(0, numString.length - j);
-                rightNumber = mirrorString(leftNumber);
+                rightNumber = reverseString(leftNumber);
 
                 if (leftNumber === rightNumber){
-                    return rightNumber;
+                    result.push(rightNumber);
                 }
-                //if (leftNumber === rightNumber){
-                //result = result + rightNumber + '<br>';
-                //count++;
-                //}
             }
         }
 
-        //if (count > 0){
-        //    return result;
-        //}
+        if (result.length > 0){
+            result = sortMaxMin(result);
+            return result[0];
+        }
         return 0;
     }
     return error;
