@@ -9,6 +9,73 @@
     <body>
         <div class="container">
                 <h1>JS Elementary Task</h1>
+            <div>
+                <h2>1. Шахматная доска</h2>
+                <p>Вывести шахматную доску с заданными<br> размерами высоты и ширины, по принципу:</p>
+                <pre>
+                        *  *  *  *  *  *
+                          *  *  *  *  *  *
+                        *  *  *  *  *  *
+                          *  *  *  *  *  *
+                </pre>
+                <p>Входные параметры: длина, ширина, символ для отображения.<br>
+                    Выход: строка с представлением шахматной доски</p>
+
+                <p>Введите ширину:</p>
+                <input id="width" type="text" value="6"><label for="width"></label>
+                <p>Введите длинну:</p>
+                <input id="height" type="text" value="4"><label for="height"></label>
+                <p>Введите символ:</p>
+                <input id="symbol" type="text" value="*"><label for="symbol"></label>
+                <button class ="btn btn-success" id="buildBoard">Построить доску</button>
+                <p class ='out' id="boardOut"></p>
+            </div>
+            <div>
+                <h2>2. Анализ конвертов</h2>
+                <p>Есть два конверта со сторонами (a,b) и (c,d). <br>Требуется определить, можно ли один конверт вложить в другой. Программа должна обрабатывать ввод чисел с плавающей точкой.<br>
+                    Входные параметры: объекты конверт1 и конверт2<br>
+                    Выход: номер конверта, если вложение возможно, 0 – если вложение невозможно.</p>
+
+                <p>Введите стороны Конверта 1:</p>
+                <p> Сторона "a":</p>
+                <input id="envelopeOneSideA" value='10'><label for="envelopeOneSideA"></label>
+                <p>Сторона "b"::</p>
+                <input id="envelopeOneSideB" value='12'><label for="envelopeOneSideB"></label>
+                <p>Введите стороны Конверта 2:</p>
+                <p> Сторона "c":</p>
+                <input id="envelopeTwoSideC" value='25'><label for="envelopeTwoSideC"></label>
+                <p>Сторона "d"::</p>
+                <input id="envelopeTwoSideD" value='40'><label for="envelopeTwoSideD"></label>
+                <button class ="btn btn-success" id="putEnvelope">Вложить конверты</button>
+                <p class ='out' id="envelopeOut"></p>
+            </div>
+            <div>
+                <h2>3. Сортировка треугольников</h2>
+                <p>Вывести треугольники в порядке убывания их площади.<br>
+
+                    Входные параметры: массив объектов треугольник<br>
+                    Выход: упорядоченный массив имён треугольников<br>
+
+                    Примечание:<br>
+                    •	Расчёт площади треугольника должен производится по формуле Герона.<br>
+                    •	Каждый треугольник определяется именами вершин и длинами его сторон. <br>
+                    •	Приложение должно обрабатывать ввод чисел с плавающей точкой:<br>
+                    { <br>
+                    vertices: ‘ABC’,<br>
+                    a: 10,<br>
+                    b: 20,<br>
+                    c: 22.36<br>
+                    }</p>
+                <p>Введите массив объектов треугольник:</p>
+
+                <input id="trianglesArr" type="text"
+                       value="[{vertices: 'ABC', a: 35, b: 12, c: 30},
+                       {vertices: 'DEF', d: 135, e: 112, f:113}, {vertices: 'GHI', g: 135, h: 112, i: 33},
+                       {vertices: 'JKL', j: 40, k: 42, l: 43 }]"/><label for="trianglesArr"></label>
+                <p><button class ="btn btn-success" id="trianglesSort">Сортировать по площади</button></p>
+                <p class ='out' id="trianglesOut"></p>
+            </div>
+            <div>
                 <h2>4. Является ли данное число палиндромом?</h2>
                 <p>Проверить является ли число или его часть палиндромом.<br>
                 Например, число 1234437 не является палиндромом, но является палиндромом его часть 3443.<br>
@@ -20,6 +87,58 @@
                 <button class="btn btn-success" id="getPalindrome">Найти палиндром</button>
                 <p class="out" id="palindromeOut"></p>
             </div>
+            <div>
+                <h2>5. Счастливые билеты</h2>
+                <p>Есть 2 способа подсчёта счастливых билетов:<br>
+                    1. Простой — если на билете напечатано шестизначное число, и сумма первых трёх цифр равна сумме<br> последних трёх, то этот билет считается счастливым.<br>
+                    2. Сложный — если сумма чётных цифр билета равна сумме нечётных цифр билета, то билет считается<br> счастливым.<br>
+                    Определить программно какой вариант подсчёта счастливых билетов даст их большее количество на <br>заданном интервале. <br>
+
+                    Входные параметры: объект context с полями min и max<br>
+                    Выход: объект с информацией о победившем методе и количестве счастливых билетов для каждого способа подсчёта.</p>
+
+                <p>Введите поле min</p>
+                <input id="ticketsMin" type="text" value='111111'><label for="ticketsMin"></label>
+                <p>Введите поле max</p>
+                <input id="ticketsMax" type="text" value='222222'><label for="ticketsMax"></label>
+                <button class ="btn btn-success" id="getLuckyTicks">Расчитать лучший медот</button>
+                <p class ='out' id="ticketsOut"></p>
+            </div>
+
+            <div>
+                <h2>6. Числовая последовательность</h2>
+                <p>Вывести через запятую ряд длиной n, состоящий из натуральных чисел, <br>
+                    квадрат которых не меньше заданного m.<br>
+
+                    Входные параметры: длина и значение минимального квадрата<br>
+                    Выход: строка с рядом чисел</p>
+
+                <p>Введите длинну ряда:</p>
+                <input id="n" type="text" value='20'><label for="n"></label>
+                <p>Введите значение минимального квадрата
+                    :</p>
+                <input id="m" type="text" value='50'><label for="m"></label>
+                <button class ="btn btn-success" id="getNumSeq">Рассчитать ряд</button>
+                <p class ='out' id="numSeqOut"></p>
+            </div>
+            <div>
+                <h2>7. Ряд Фибоначчи для диапазона</h2>
+                <p>Вывести все числа Фибоначчи, которые удовлетворяют переданному в функцию ограничению:<br> находятся в указанном диапазоне, либо имеют указанную длину.<br>
+
+                    Входные параметры: объект context с полями min и max, либо с полем length <br>
+                    Выход: массив чисел</p>
+
+                <p>Введите значения min и max или значение length </p>
+                <p>Введите значения min:</p>
+                <input id="fibonacciMin" type="text" value='11'><label for="fibonacciMin"></label>
+                <p>Введите значение max: </p>
+                <input id="fibonacciMax" type="text" value='22'><label for="fibonacciMax"></label>
+                <p>Введите значение length: </p>
+                <input id="fibonacciLength" type="text" value=''><label for="fibonacciLength"></label>
+                <button class ="btn btn-success" id="getFibSeq">Расчитать ряд</button>
+                <p class ='out' id="fibSeqOut"></p>
+            </div>
+        </div>
         <script src="dist/main.js"></script>
     </body>
 </html>
