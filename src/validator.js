@@ -32,10 +32,11 @@ export function checkString(string){
 //obj false check
 export function checkObjFalse(obj){
     for (let key in obj){
-        if(obj[key] === false){
+        if(isNaN(obj[key]) || obj[key] <= 0 ){
             return false;
         }
     }
+    return true;
 }
 
 //array string to array and check
