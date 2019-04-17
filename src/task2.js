@@ -1,34 +1,45 @@
-import {checkNumber, checkObjFalse} from "./validator.js";
+import {isNumberFloat} from "./validator.js";
 
 export function envelopes(envelopeOne, envelopeTwo) {
-    let error = '{status: ‘failed’, reason: ‘ Введите корректное значение. Пример: Сторона а: 8, Сторона в: 12 ...}';
-    //check values
-    envelopeOne = {"a": parseFloat(envelopeOne.a), "b": parseFloat(envelopeOne.b)};
-    envelopeTwo = {"c": parseFloat(envelopeTwo.c), "d": parseFloat(envelopeTwo.d)};
-    if (checkObjFalse(envelopeOne) && checkObjFalse(envelopeTwo)) {
+    let msg = {
+        status: "",
+        reason: ""
+    };
 
-    //trying to put envelopes
-        if (envelopeOne.a > envelopeTwo.c && envelopeOne.b > envelopeTwo.d) {
+    envelopeOne = {"a": isNumberFloat(envelopeOne.a), "b": isNumberFloat(envelopeOne.b)};
+    envelopeTwo = {"c": isNumberFloat(envelopeTwo.c), "d": isNumberFloat(envelopeTwo.d)};
+
+    if ((envelopeOne.a > 0)
+        && (envelopeOne.b > 0)
+        && (envelopeTwo.c > 0)
+        && (envelopeTwo.d > 0)){
+        return getEnvelop(envelopeOne, envelopeTwo);
+    }
+    msg.status = 'failed ';
+    msg.reason = 'Enter a valid value. Example: side a 8 , side b 12 ... ';
+    return JSON.stringify(msg);
+}
+
+function getEnvelop(envelopeOne, envelopeTwo){
+    if (envelopeOne.a > envelopeTwo.c && envelopeOne.b > envelopeTwo.d) {
+        return "Конверт 2"
+    }
+    else {
+        if (envelopeOne.a > envelopeTwo.d && envelopeOne.b > envelopeTwo.c) {
             return "Конверт 2"
         }
         else {
-            if (envelopeOne.a > envelopeTwo.d && envelopeOne.b > envelopeTwo.c) {
-                return "Конверт 2"
+            if (envelopeOne.a < envelopeTwo.c && envelopeOne.b < envelopeTwo.d) {
+                return "Конверт 1"
             }
             else {
-                if (envelopeOne.a < envelopeTwo.c && envelopeOne.b < envelopeTwo.d) {
+                if (envelopeOne.a < envelopeTwo.d && envelopeOne.b < envelopeTwo.c) {
                     return "Конверт 1"
                 }
                 else {
-                    if (envelopeOne.a < envelopeTwo.d && envelopeOne.b < envelopeTwo.c) {
-                        return "Конверт 1"
-                    }
-                    else {
-                        return 0
-                    }
+                    return 0
                 }
             }
         }
     }
-    return error;
 }

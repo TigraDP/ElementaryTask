@@ -1,53 +1,38 @@
-import {checkNumber} from "./validator.js";
-import {fibonacciSeq} from "./mathFunctions.js"
+import {isNumberInt, isNaturalNumber} from "./validator.js";
+import {fibonacciSeq} from "./functions.js"
 
 export function fibonacci(min,max,length) {
-    let error = '{status: ‘failed’, reason: ‘ Введите корректоное значение. ' +
-        'Пример: для вычисления диапазона введите значения min: 10 и max: 20, а для' +
-        'вычисления чисел указанной длинны значение length‘}';
-    let start, end;
-    //get context object
-    let context = {"min": checkNumber(min), "max": checkNumber(max), "length": checkNumber(length)};
-    //check object`s values
-    if (context.length !== false && context.min !== false && context.max !== false) {
-        return error;
+    let msg = {
+        status: "",
+        reason: ""
+    };
+    let context = {"min": isNumberInt(min), "max": isNumberInt(max), "length": isNumberInt(length)};
+    let start;
+    let end;
+    if (!length){
+        length = 0;
     }
-    else{
-        if (context.length !== false && context.min !== false && context.max === false) {
-            return error;
-        }
-        else {
-            if (context.length !== false && context.min === false && context.max !== false) {
-                    return error;
-            }
-            else {
-                //check context length value
-                if (context.length === false) {
-                    // heck context min and max values
-                    if (context.min === false || context.max === false) {
-                        return error;
-                    }
-                    //get fibonacci sequence from min max
-                    else {
-                        start = context.min;
-                        end = context.max;
-                        length = null;
-                        return fibonacciSeq(start, end, length);
-                    }
-                }
-                //get fibonacci sequence from length
-                else {
-                    start = null;
-                    end = null;
-                    length = context.length;
-                    return fibonacciSeq(start, end, length);
-                }
-            }
+    if ((isNaturalNumber(min))
+        && (isNaturalNumber(max))
+        && (isNaturalNumber(length))){
+
+    if (context.length > 0) {
+        start = Math.pow(10,context.length)/10;
+        end = Math.pow(10,context.length)-1;
+        return fibonacciSeq(start, end);
+    } else {
+        if (context.min > 0 && context.max > 0 && context.max > context.min) {
+            start = context.min;
+            end = context.max;
+            return fibonacciSeq(start, end);
         }
     }
+    }
+    msg.status = "failed";
+    msg.reason = "Enter a valid value. Example: ​​for calculate the range values: min: 10 и max: 20, " +
+        "and for calculating the numbers of the specified length - value: length 2 ";
+    return JSON.stringify(msg);
+
 }
 
 
-
-
-    

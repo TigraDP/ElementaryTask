@@ -1,24 +1,25 @@
-import {arrSortingByMaximum} from "./functions.js";
-import {reverseString} from "./functions.js";
-import {isNaturalNumber} from "./validator";
+import {arrSortingByMaximum, reverseString} from "./functions.js";
+import {isNaturalNumber} from "./validator.js";
 
 export function findPalindrome(palindromeData){
-const error = {
-    status: "failed",
-    reason: "Enter a valid value - an integer greater than 10. Example: 123456789"
-};
-let mainResult;
+    let msg = {
+        status: "",
+        reason: ""
+    };
+    let mainResult;
 
-if ((isNaturalNumber(palindromeData)) && (Number(palindromeData) > 10 || Number(palindromeData) < -10 ) ){
-    mainResult = isPalindrome(palindromeData);
-    if (mainResult.length > 0){
-        mainResult = arrSortingByMaximum(mainResult);
-        return mainResult[0];
+    if ((isNaturalNumber(palindromeData)) && (Number(palindromeData) > 10 || Number(palindromeData) < -10 ) ){
+        mainResult = isPalindrome(palindromeData);
+        if (mainResult.length > 0){
+            mainResult = arrSortingByMaximum(mainResult);
+            return mainResult[0];
+        }
+        return 0;
+        }
+        msg.status = "failed";
+        msg.reason = "Enter a valid value - an integer greater than 10. Example: 123456789";
+        return JSON.stringify(msg)
     }
-    return 0;
-    }
-    return "status:" + " " + error.status + "; " + "reason:" + " " + error.reason;
-}
 
 function isPalindrome(data){
     let number;

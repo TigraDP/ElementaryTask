@@ -1,22 +1,27 @@
-import {checkNumber} from "./validator.js";
+import {isNumberInt} from "./validator.js";
 
 export function numSeq(n,m){
-    let error = '{status: ‘failed’, reason: ‘ Введите корректоные значения (натуральные числа). Пример: n = 25, m =50}';
+    let msg = {
+        status: "",
+        reason: ""
+    };
     let result = [];
     let len = 0;
-    n = checkNumber(n);
-    m = checkNumber(m);
-    //check values
-    if (n === false ||  m === false || n === 0) {
-        return error;
-    }
-    else {
-        for (let i = 0; len < n; i++) {
-            if (Math.pow(i,2) >= m){
+    let rowLength = isNumberInt(n);
+    let squareOfNumber = isNumberInt(m);
+
+    if ((rowLength) &&  (squareOfNumber) && (rowLength > 0) && (squareOfNumber >0)){
+
+        for (let i = 0; len < rowLength; i++) {
+            if (Math.pow(i,2) >= squareOfNumber){
                 result.push(i);
                 len++;
             }
         }
-    return String(result);
+        return String(result);
+    } else{
+    msg.status = "failed";
+    msg.reason = "Enter a valid value. Example: n 25 , m 50";
+    return JSON.stringify(msg);
     }
 }

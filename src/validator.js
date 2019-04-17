@@ -1,45 +1,26 @@
-export function isNaturalNumber (str) {
+export function isNaturalNumber (value) {
     let pattern = /^(0|([-0-9]\d*))$/;
-    return pattern.test(str);
+    return pattern.test(value);
 }
 
 export function isInteger(num) {
     return (num ^ 0) === num;
 }
 
-
-//old
-export function checkNumber(number){
-    number = parseInt(number);
-    if (isNaN(number)){
-        return false;
+export function isNumberInt(value) {
+    if (!isNaN(value) && !isNaN(parseInt(value))){
+        return parseInt(value);
     }
-    else {
-        return number;
-    }
+    return false;
 }
 
-//empty string check
-export function checkString(string){
-    if (string === ""){
-        return false;
+export function isNumberFloat(value) {
+    if (!isNaN(value) && !isNaN(parseFloat(value))){
+        return parseFloat(value);
     }
-    else {
-        return string;
-    }
+    return false;
 }
 
-//obj false check
-export function checkObjFalse(obj){
-    for (let key in obj){
-        if(isNaN(obj[key]) || obj[key] <= 0 ){
-            return false;
-        }
-    }
-    return true;
-}
-
-//array string to array and check
 export function arrayStringToArray (arrayString) {
     try {
         arrayString = eval('('+arrayString+')');
@@ -47,4 +28,9 @@ export function arrayStringToArray (arrayString) {
     }
     catch (err) {return false}
 }
+
+
+
+
+
 

@@ -2,7 +2,7 @@ import {getChessboard} from './task1.js';
 import {envelopes} from './task2.js';
 import {trianglesSort} from './task3.js';
 import {findPalindrome} from './task4.js';
-import {luckyTickets} from './task5.js';
+import {getLuckyTickets} from './task5.js';
 import {numSeq} from './task6.js';
 import {fibonacci} from './task7.js';
 
@@ -42,7 +42,7 @@ btn.getPalindrome.onclick = () =>{
 btn.getLuckyTicks.onclick = () =>{
     let min = inp.ticketsMin.value;
     let max = inp.ticketsMax.value;
-    out.ticketsOut.innerHTML = luckyTickets(min, max);
+    out.ticketsOut.innerHTML = getLuckyTickets(min, max);
 };
 
 //task6

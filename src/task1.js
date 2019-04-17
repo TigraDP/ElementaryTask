@@ -1,18 +1,21 @@
-import {isInteger} from "./validator.js";
+import {isNaturalNumber} from "./validator.js";
 
 export function getChessboard(width,height,symbol){
-    const error = {
-        status: "failed",
-        reason: "Enter a valid value. Example: width 8, height 8, symbol *"
+    let msg = {
+        status: "",
+        reason: ""
     };
 
-     width = parseInt(width);
-     height = parseInt(height);
-
-    if ((isInteger(width)) && (isInteger(height))&& (symbol !== '') && (width > 1) && (height > 1)){
+    if ((isNaturalNumber(width))
+        && (isNaturalNumber(height))
+        && (symbol !== '')
+        && (width > 1)
+        && (height > 1)){
         return buildChessboard(width,height,symbol);
         }
-    return "status:" + " " + error.status + "; " + "reason:" + " " + error.reason;
+    msg.status = 'failed ';
+    msg.reason = 'Enter a valid value. Example: width 8 , height 8 , symbol * ';
+    return JSON.stringify(msg);
 }
 
 function buildChessboard(boardWidth,boardHeight,boardSymbol){
