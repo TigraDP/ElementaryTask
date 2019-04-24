@@ -20,7 +20,7 @@ function getEnvelop(envelopeOne, envelopeTwo){
     } else if (envelopeOne.a < envelopeTwo.d && envelopeOne.b < envelopeTwo.c){
         return "Конверт 1";
     }
-    return 0;
+    return "0";
 }
             
         
