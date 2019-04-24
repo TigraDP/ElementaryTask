@@ -1,21 +1,27 @@
-import {isNaturalNumber} from "./validator.js";
+function getChessboard(width,height,symbol){
+    width = naturalNumberValidation(width);
+    height = naturalNumberValidation(height);
 
-export function getChessboard(width,height,symbol){
-    let msg = {
-        status: "",
-        reason: ""
-    };
-
-    if ((isNaturalNumber(width))
-        && (isNaturalNumber(height))
-        && (symbol !== '')
-        && (width > 1)
-        && (height > 1)){
+    if (chessboardParametersValidation(width,height,symbol)){
         return buildChessboard(width,height,symbol);
-        }
-    msg.status = 'failed ';
-    msg.reason = 'Enter a valid value. Example: width 8 , height 8 , symbol * ';
-    return JSON.stringify(msg);
+    } else{
+        errorMessage.status = 'failed ';
+        return false;
+    }
+}
+
+function chessboardParametersValidation(width,height,symbol){
+    if (!width){
+        errorMessage.reason = 'Enter a valid width value. Example: 16';
+        return false;
+    } else if (!height){
+        errorMessage.reason = 'Enter a valid height value. Example: 8';
+        return false;
+        } else if (symbol.length === 0){
+        errorMessage.reason = 'Enter a valid symbol value. Example: *';
+        return false;
+    }
+    return true;
 }
 
 function buildChessboard(boardWidth,boardHeight,boardSymbol){
@@ -23,15 +29,15 @@ function buildChessboard(boardWidth,boardHeight,boardSymbol){
 
        for (let i = 0; i < boardHeight; i++){
             for (let j = 0; j < boardWidth; j++){
-                if (i%2 === 0 && j === 0){
-                    result = result + '&nbsp' + boardSymbol + '&nbsp';
+                if ((i+j) % 2 === 0){
+                    result = result + boardSymbol;
                 }
                 else {
-                    result = result + boardSymbol + '&nbsp';
+                    result = result + "&nbsp";
                 }
             }
-            result = result + '<br>';
-        }
+            result = result + "<br>";
+       }
        return result;
 }
 

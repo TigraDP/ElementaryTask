@@ -1,25 +1,10 @@
-import {sumOfDigits} from "./functions.js";
-import {isNaturalNumber} from "./validator.js";
+function  getLuckyTickets(context){
 
-export function  getLuckyTickets(min, max){
-    let msg = {
-        status: "",
-        reason: ""
-    };
-    let context = {"min": min, "max": max};
-
-    if ((isNaturalNumber(min))
-        && (isNaturalNumber(max))
-        && (context.min > 0)
-        && (max > 1)
-        && (max > min)
-        && (min.length === 6)
-        && (max.length === 6)){
+    if ((valueLengthValidation(context,6)) && (objMinMaxParametersValidation(context))){
         return getWinnerMethod(context);
-    } else{
-    msg.status = "failed ";
-    msg.reason = "Enter a valid value. Example: min 111111 , max 222222";
-    return JSON.stringify(msg);
+    } else {
+        errorMessage.status = 'failed ';
+        return false;
     }
 }
 
@@ -29,23 +14,23 @@ function getWinnerMethod(context){
     let sumEven;
     let sumOdd;
     let result;
-    let value;
+    let currentValue;
     let leftPart;
     let rightPart;
-
     for (let i = context.min; i < context.max; i++){
-        value = String(i);
-        leftPart = Number(value.substring(0,3));
-        rightPart = Number(value.substring(3,6));
+        currentValue = i.toString();
+        leftPart = Number(currentValue.substring(0,3));
+        rightPart = Number(currentValue.substring(3,6));
 
-        if (sumOfDigits (leftPart) === sumOfDigits (rightPart)){
+        if (sumOfDigits(leftPart) === sumOfDigits(rightPart)){
             methodOne = methodOne + 1;
         }
+
         sumEven = 0;
         sumOdd = 0;
 
-        for(let j = 0; j < value.length; j++){
-            let numFromString = Number(value[j]);
+        for(let j = 0; j < currentValue.length; j++){
+            let numFromString = Number(currentValue[j]);
 
             if(numFromString % 2 === 0){
                 sumEven = sumEven + numFromString;
@@ -66,7 +51,7 @@ function getWinnerMethod(context){
     } else if (methodOne < methodTwo){
         result.winnerMethod = 2;
     }
-    return JSON.stringify(result);
+    return result;
 }
 
 
